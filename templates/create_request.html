@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Request</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #e2e8f0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .form-container {
+      background: rgba(30, 41, 59, 0.8);
+      backdrop-filter: blur(20px);
+      padding: 3rem;
+      border-radius: 24px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(96, 165, 250, 0.2);
+      animation: slideIn 0.6s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .form-title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .form-group {
+      margin-bottom: 1.75rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+      color: #60a5fa;
+      font-size: 0.95rem;
+      letter-spacing: 0.025em;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      border: 2px solid rgba(96, 165, 250, 0.2);
+      background: rgba(15, 23, 42, 0.6);
+      color: #e2e8f0;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    select:focus, input:focus {
+      border-color: #60a5fa;
+      background: rgba(15, 23, 42, 0.8);
+      box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
+      transform: translateY(-2px);
+    }
+
+    select:hover, input:hover {
+      border-color: rgba(96, 165, 250, 0.4);
+    }
+
+    select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2360a5fa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 20px;
+      padding-right: 3rem;
+    }
+
+    select option {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 0.75rem;
+    }
+
+    /* Custom datetime styling */
+    input[type="datetime-local"] {
+      position: relative;
+      cursor: pointer;
+    }
+
+    input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2360a5fa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E");
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+      opacity: 1;
+    }
+
+    .datetime-helper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+      color: #94a3b8;
+    }
+
+    .datetime-icon {
+      color: #60a5fa;
+    }
+
+    .quick-time-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .quick-time-btn {
+      padding: 0.5rem;
+      background: rgba(96, 165, 250, 0.1);
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      border-radius: 8px;
+      color: #60a5fa;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .quick-time-btn:hover {
+      background: rgba(96, 165, 250, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(96, 165, 250, 0.2);
+    }
+
+    .quick-time-btn:active {
+      transform: translateY(0);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(96, 165, 250, 0.3);
+      margin-top: 0.5rem;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 30px rgba(96, 165, 250, 0.5);
+    }
+
+    .submit-btn:active {
+      transform: translateY(-1px);
+    }
+
+    .floor-option-wrapper {
+      position: relative;
+    }
+
+    .floor-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.25rem;
+      pointer-events: none;
+    }
+
+    select.with-icon {
+      padding-left: 3rem;
+    }
+
+    @media (max-width: 640px) {
+      .form-container {
+        padding: 2rem;
+      }
+
+      .quick-time-buttons {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .input-focused {
+      animation: focusPulse 0.6s ease-out;
+    }
+
+    @keyframes focusPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.4);
+      }
+      100% {
+        box-shadow: 0 0 0 10px rgba(96, 165, 250, 0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <form method="POST" class="form-container">
+    {% csrf_token %}
+    <h2 class="form-title">📋 New Request</h2>
+
+    <!-- Floor Dropdown -->
+    <div class="form-group">
+      <label for="floor">🏢 Select Floor</label>
+      <div class="floor-option-wrapper">
+        <select name="floor" id="floor" required>
+          <option value="ground" selected>Ground Floor</option>
+          <option value="basement1">Basement 1</option>
+          <option value="basement2">Basement 2</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Date and Time Field -->
+    <div class="form-group">
+      <label for="time_to_reach">⏰ Expected Time to Reach</label>
+      <input type="datetime-local" name="time_to_reach" id="time_to_reach" required>
+      
+      <div class="datetime-helper">
+        <span class="datetime-icon">💡</span>
+        <span>Quick select or manually adjust time</span>
+      </div>
+
+      <div class="quick-time-buttons">
+        <button type="button" class="quick-time-btn" onclick="setQuickTime(5)">+5 min</button>
+        <button type="button" class="quick-time-btn" onclick="setQuickTime(10)">+10 min</button>
+        <button type="button" class="quick-time-btn" onclick="setQuickTime(15)">+15 min</button>
+        <button type="button" class="quick-time-btn" onclick="setQuickTime(30)">+30 min</button>
+        <button type="button" class="quick-time-btn" onclick="setQuickTime(60)">+1 hour</button>
+        <button type="button" class="quick-time-btn" onclick="setCurrentTime()">Now</button>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">✓ Submit Request</button>
+  </form>
+
+  <script>
+    // Auto-fill current local date and time
+    function setCurrentTime() {
+      const now = new Date();
+      const offset = now.getTimezoneOffset();
+      const localTime = new Date(now.getTime() - offset * 60000);
+      const input = document.getElementById('time_to_reach');
+      input.value = localTime.toISOString().slice(0, 16);
+      input.classList.add('input-focused');
+      setTimeout(() => input.classList.remove('input-focused'), 600);
+    }
+
+    function setQuickTime(minutes) {
+      const now = new Date();
+      now.setMinutes(now.getMinutes() + minutes);
+      const offset = now.getTimezoneOffset();
+      const localTime = new Date(now.getTime() - offset * 60000);
+      const input = document.getElementById('time_to_reach');
+      input.value = localTime.toISOString().slice(0, 16);
+      input.classList.add('input-focused');
+      setTimeout(() => input.classList.remove('input-focused'), 600);
+    }
+
+    // Set current time on load
+    setCurrentTime();
+
+    // Add focus animations
+    const inputs = document.querySelectorAll('input, select');
+    inputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        this.classList.add('input-focused');
+      });
+      input.addEventListener('blur', function() {
+        this.classList.remove('input-focused');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Helper Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-800 text-white flex items-center justify-center min-h-screen">
+  <form method="POST" class="bg-gray-700 p-8 rounded-xl shadow-xl w-96">
+    {% csrf_token %}
+    <h2 class="text-2xl font-bold mb-4 text-center">Helper Login</h2>
+
+    {% for message in messages %}
+      <div class="bg-red-500 p-2 mb-2 text-center rounded">{{ message }}</div>
+    {% endfor %}
+
+    <input name="helper_id" placeholder="Helper ID" class="w-full p-3 mb-4 rounded text-black" required>
+
+    <button class="bg-purple-600 w-full py-2 rounded hover:bg-purple-700">Login</button>
+  </form>
+</body>
+</html>
