@@ -1,41 +1,122 @@
-<h1><text-allighn="centre> 🩺 MediGo</h1>
+<h1>🩺 <strong>MediGo</strong></h1> <p class="muted"><strong>MediGo</strong> is a web application designed to connect <strong>patients</strong> and <strong>helpers</strong> efficiently, ensuring that <strong>wheelchairs and other assistance</strong> are conveyed on time. The platform provides a seamless way for patients to request help and for helpers to respond promptly.</p> </header>
+<section class="images">
+  <h2>🏠 Home Page</h2>
+  <img alt="Home Page" src="https://github.com/user-attachments/assets/9a1b87c1-24eb-4b31-8882-6dbb0a4bfe4f" />
 
-MediGo is a web application designed to connect patients and helpers efficiently, ensuring that wheelchairs and other assistance are conveyed on time. The platform provides a seamless way for patients to request help and for helpers to respond promptly.
+  <h2>📊 Dashboard</h2>
+  <img alt="Dashboard" src="https://github.com/user-attachments/assets/0f9b1efa-7f6c-460b-984b-a1cfbbc92eba" />
 
-<h2>🏠 Home Page</h2>
-<img width="1903" height="1047" alt="image" src="https://github.com/user-attachments/assets/9a1b87c1-24eb-4b31-8882-6dbb0a4bfe4f" />
-<h2>📊 Dashboard</h2>
-<img width="1904" height="621" alt="image" src="https://github.com/user-attachments/assets/0f9b1efa-7f6c-460b-984b-a1cfbbc92eba" />
-<h2>🧑‍🤝‍🧑 Helper Dashboard</h2>
-<img width="1229" height="883" alt="image" src="https://github.com/user-attachments/assets/0f81e4f6-9fa6-4213-a6b4-b654f5a494f2" />
-🚀 Features
+  <h2>🧑‍🤝‍🧑 Helper Dashboard</h2>
+  <img alt="Helper Dashboard" src="https://github.com/user-attachments/assets/0f81e4f6-9fa6-4213-a6b4-b654f5a494f2" />
+</section>
 
-🧭 Patient-Helper Connection — Patients can request help and helpers are notified immediately.
+<section>
+  <h2>🚀 Features</h2>
+  <ul>
+    <li><strong>Patient-Helper Connection</strong> — Patients can request help and helpers are notified immediately.</li>
+    <li><strong>Real-time Assistance</strong> — Ensures wheelchairs and other aids are delivered on time.</li>
+    <li><strong>User Authentication</strong> — Secure login for both patients and helpers.</li>
+    <li><strong>Admin Panel</strong> — Manage users and requests efficiently.</li>
+  </ul>
+</section>
 
-⏱️ Real-time Assistance — Ensures wheelchairs and other aids are delivered on time.
+<section>
+  <h2>🔑 Default Credentials</h2>
 
-🔐 User Authentication — Secure login for both patients and helpers.
+  <div class="cred">
+    <strong>Admin Access</strong><br />
+    Username: <code>admin</code><br />
+    Password: <code>test</code>
+  </div>
 
-⚙️ Admin Panel — Manage users and requests efficiently.
+  <div class="cred">
+    <strong>Patient Access</strong><br />
+    Patient ID: <code>498</code><br />
+    Password: <code>test</code>
+  </div>
 
-<h2>🔑 Default Credentials</h2>
+  <div class="cred">
+    <strong>Helper Access</strong><br />
+    Helper ID: <code>397</code><br />
+    Password: <code>992</code>
+  </div>
 
-👨‍💼 Admin Access
+  <p class="note"><strong>Note:</strong> You can use the above credentials for testing on your local/dev instance.</p>
+</section>
 
-Username: admin
+<section>
+  <h2>🗂️ Folder / Project Architecture</h2>
+  <div class="folder">
 
-Password: test
+<pre> mediogo/ │ ├── manage.py # Django management script ├── requirements.txt # Python dependencies ├── db.sqlite3 # SQLite database (default) │ ├── mediogo_app/ # Main Django application │ ├── migrations/ # Database migrations │ ├── static/ # Static files (CSS, JS, images) │ ├── templates/ # HTML templates │ │ ├── admin/ # Admin templates │ │ ├── patient/ # Patient templates │ │ └── helper/ # Helper templates │ ├── __init__.py │ ├── admin.py # Admin site configuration │ ├── apps.py │ ├── models.py # Database models (Patient, Helper, Request) │ ├── urls.py # App-level URL routes │ ├── views.py # App-level views │ └── forms.py # Forms for login, requests, etc. │ └── mediogo_project/ # Django project folder ├── __init__.py ├── settings.py # Project settings ├── urls.py # Project-level URLs └── wsgi.py # WSGI configuration </pre>
+  </div>
+</section>
 
-🧍‍♂️ Patient Access
+<section>
+  <h2>⚙️ Installation</h2>
 
-Patient ID: 498
+  <h3>Prerequisites</h3>
+  <ul>
+    <li><strong>Python 3.8+</strong></li>
+    <li><strong>Django 3.2+</strong></li>
+    <li><strong>SQLite</strong> (default database)</li>
+  </ul>
 
-Password: test
+  <h3>Steps</h3>
+  <p>Open a terminal and run:</p>
+  <pre>
 
-🧑‍🔧 Helper Access
+Clone the repository
 
-Helper ID: 397
+git clone https://github.com/GitGuru-sudo/mediogo.git
 
-Password: 992
+cd mediogo
 
-🧠 Note: You can log in with these credentials for testing purposes.
+Create virtual environment
+
+python -m venv venv
+source venv/bin/activate # Windows: venv\Scripts\activate
+
+Install dependencies
+
+pip install -r requirements.txt
+
+Apply migrations
+
+python manage.py migrate
+
+Run the development server
+
+python manage.py runserver
+
+Visit
+
+http://127.0.0.1:8000/
+
+</pre>
+</section>
+
+<section>
+  <h2>🧠 Usage</h2>
+  <ul>
+    <li><strong>Patients</strong> can log in and request assistance.</li>
+    <li><strong>Helpers</strong> can log in to view and respond to requests.</li>
+    <li><strong>Admins</strong> can manage users and monitor requests via Django admin.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>🤝 Contributing</h2>
+  <p>Contributions are welcome! Please <strong>fork</strong> the repository, create a new branch, and submit a pull request with your improvements.</p>
+</section>
+
+<section>
+  <h2>📜 License</h2>
+  <p>This project is licensed under the <strong>MIT License</strong>.</p>
+</section>
+
+<footer class="cta">
+  <a class="button" href="https://github.com/GitGuru-sudo/mediogo.git" target="_blank" rel="noopener noreferrer">Open repository on GitHub</a>
+</footer>
+
+</div> </body> </html>
