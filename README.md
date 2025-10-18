@@ -46,9 +46,8 @@
 
 <section>
   <h2>🗂️ Folder / Project Architecture</h2>
-  <div class="folder">
+<img width="806" height="806" alt="image" src="https://github.com/user-attachments/assets/2efe2c25-1538-443e-a979-37bf6bcd9de6" />
 
-<pre> mediogo/ │ ├── manage.py # Django management script ├── requirements.txt # Python dependencies ├── db.sqlite3 # SQLite database (default) │ ├── mediogo_app/ # Main Django application │ ├── migrations/ # Database migrations │ ├── static/ # Static files (CSS, JS, images) │ ├── templates/ # HTML templates │ │ ├── admin/ # Admin templates │ │ ├── patient/ # Patient templates │ │ └── helper/ # Helper templates │ ├── __init__.py │ ├── admin.py # Admin site configuration │ ├── apps.py │ ├── models.py # Database models (Patient, Helper, Request) │ ├── urls.py # App-level URL routes │ ├── views.py # App-level views │ └── forms.py # Forms for login, requests, etc. │ └── mediogo_project/ # Django project folder ├── __init__.py ├── settings.py # Project settings ├── urls.py # Project-level URLs └── wsgi.py # WSGI configuration </pre>
   </div>
 </section>
 
