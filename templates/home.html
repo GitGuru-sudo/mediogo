@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home | Emergency Request System</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -129,6 +130,52 @@
     h2 {
       color: #475569;
     }
+
+    /* Mobile tweaks */
+    @media (max-width: 640px) {
+      #header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.5rem 0.75rem;
+        gap: 0.5rem;
+      }
+
+      #header nav {
+        width: 100%;
+      }
+
+      #header nav a {
+        padding: 0.5rem 0.5rem;
+        display: inline-block;
+      }
+
+      #brand svg {
+        width: 48px;
+        height: 48px;
+      }
+
+      #content {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.125rem;
+      }
+
+      .button-group {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -172,6 +219,17 @@
     </section>
   </div>
 
+    <!-- Mobile floating create menu -->
+    <div class="mobile-create" id="mobileCreate">
+      <div class="menu" id="mobileCreateMenu" style="display:none">
+        <a href="{% url 'create_request' %}">+ Request</a>
+        <a href="{% url 'patient_login' %}">Patient Login</a>
+        <a href="{% url 'patient_register' %}">Register</a>
+        <a href="{% url 'helper_login' %}">Helper Login</a>
+      </div>
+      <button class="fab" id="mobileCreateToggle">☰</button>
+    </div>
+
   <!-- SVG Background -->
   <svg id="bg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1920 1080">
     <rect width="1920" height="1080" x="0" y="0" fill="#e0f2fe"></rect>
@@ -181,6 +239,20 @@
   </svg>
 
   <script>
+    // Mobile create menu JS/CSS
+    (function(){
+      const css = `
+        .mobile-create{position:fixed;right:16px;bottom:18px;z-index:1100}
+        .mobile-create .fab{width:56px;height:56px;border-radius:999px;background:#8b5cf6;color:#fff;border:none;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 8px 20px rgba(0,0,0,0.3);}
+        .mobile-create .menu{position:absolute;right:0;bottom:70px;display:flex;flex-direction:column;gap:10px}
+        .mobile-create .menu a{background:#fff;color:#111;padding:10px 14px;border-radius:12px;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,0.12);font-weight:600}
+        @media(min-width:641px){.mobile-create{display:none}}
+      `;
+      const s=document.createElement('style');s.appendChild(document.createTextNode(css));document.head.appendChild(s);
+      const btn=document.getElementById('mobileCreateToggle');const menu=document.getElementById('mobileCreateMenu');
+      if(btn){btn.addEventListener('click',()=>{menu.style.display=menu.style.display==='flex'?'none':'flex'})
+      document.addEventListener('click',(e)=>{if(!e.target.closest('#mobileCreate') ) menu.style.display='none'})}
+    })();
     function animateMorphingPath(pathElem, shapeArray, duration = 4, ease = "power4.inOut") {
       let currentIndex = 0;
       pathElem.setAttribute("d", shapeArray[currentIndex]);
