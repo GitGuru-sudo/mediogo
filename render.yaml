@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: medigo
+    env: python
+    region: ohio
+    plan: free
+    buildCommand: bash ./build.sh
+    startCommand: gunicorn medigo.wsgi:application
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: DEBUG
+        value: false
+      - key: SECRET_KEY
+        fromFile: /etc/secrets/SECRET_KEY
+      - key: ALLOWED_HOSTS
+        value: medigo.onrender.com
