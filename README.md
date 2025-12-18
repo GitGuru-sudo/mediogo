@@ -1,4 +1,11 @@
-<h1>🩺 <strong>MediGo</strong></h1> <p class="muted"><strong>MediGo</strong> is a web application designed to connect <strong>patients</strong> and <strong>helpers</strong> efficiently, ensuring that <strong>wheelchairs and other assistance</strong> are conveyed on time. The platform provides a seamless way for patients to request help and for helpers to respond promptly.</p> </header>
+<h1>🩺 <strong>MediGo</strong></h1>
+
+## 🌐 Live Demo
+**🚀 The project is deployed and live at:** [https://mediogo.onrender.com/](https://mediogo.onrender.com/)
+
+---
+
+<p class="muted"><strong>MediGo</strong> is a web application designed to connect <strong>patients</strong> and <strong>helpers</strong> efficiently, ensuring that <strong>wheelchairs and other assistance</strong> are conveyed on time. The platform provides a seamless way for patients to request help and for helpers to respond promptly.</p> </header>
 <section class="images">
   <h2>🏠 Home Page</h2>
   <img alt="Home Page" src="https://github.com/user-attachments/assets/9a1b87c1-24eb-4b31-8882-6dbb0a4bfe4f" />
