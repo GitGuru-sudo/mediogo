@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Patient, Helper, Request
 from django.contrib.auth.models import User
+from django.utils import timezone
+from datetime import timedelta
 
 # Home Page
 def home(request):
@@ -54,7 +56,12 @@ def patient_register(request):
 def patient_dashboard(request):
     try:
         patient = Patient.objects.get(user=request.user)
-        requests = Request.objects.filter(patient=patient).order_by('-created_at')
+        # Filter requests from last 7 days
+        seven_days_ago = timezone.now() - timedelta(days=7)
+        requests = Request.objects.filter(
+            patient=patient,
+            created_at__gte=seven_days_ago
+        ).order_by('-created_at')
         return render(request, 'patient_dashboard.html', {'patient': patient, 'requests': requests})
     except Patient.DoesNotExist:
         messages.error(request, 'Patient profile not found. Please register as a patient.')
@@ -105,13 +112,25 @@ def helper_dashboard(request):
         return redirect('helper_login')
     
     helper = get_object_or_404(Helper, helper_id=helper_id)
-    pending_requests = Request.objects.filter(is_accepted=False).order_by('-created_at')
-    accepted_requests = Request.objects.filter(helper=helper, is_accepted=True).order_by('-created_at')
+    # Filter requests from last 7 days
+    seven_days_ago = timezone.now() - timedelta(days=7)
+    pending_requests = Request.objects.filter(
+        is_accepted=False,
+        created_at__gte=seven_days_ago
+    ).order_by('-created_at')
+    accepted_requests = Request.objects.filter(
+        helper=helper,
+        is_accepted=True,
+        created_at__gte=seven_days_ago
+    ).order_by('-created_at')
+    
+    total_requests = pending_requests.count() + accepted_requests.count()
     
     return render(request, 'helper_dashboard.html', {
         'helper': helper,
         'pending_requests': pending_requests,
-        'accepted_requests': accepted_requests
+        'accepted_requests': accepted_requests,
+        'total_requests': total_requests
     })
 
 # Accept Request
